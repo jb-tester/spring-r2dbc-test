@@ -2,7 +2,6 @@ package com.mytests.spring.springr2dbctest;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
 
 /**
  * *
@@ -23,8 +22,10 @@ public class Customer {
     String city;
     String street;
     int card;
-    String mobilephone;
-    String homephone;
+    @Column("mobilephone")
+    String mobilePhone;
+    @Column("homephone")
+    String homePhone;
     int credit;
     boolean vip;
 
@@ -84,20 +85,20 @@ public class Customer {
         this.card = card;
     }
 
-    public String getMobilephone() {
-        return mobilephone;
+    public String getMobilePhone() {
+        return mobilePhone;
     }
 
-    public void setMobilephone(String mobilephone) {
-        this.mobilephone = mobilephone;
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
     }
 
-    public String getHomephone() {
-        return homephone;
+    public String getHomePhone() {
+        return homePhone;
     }
 
-    public void setHomephone(String homephone) {
-        this.homephone = homephone;
+    public void setHomePhone(String homePhone) {
+        this.homePhone = homePhone;
     }
 
     public int getCredit() {
@@ -126,8 +127,8 @@ public class Customer {
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +
                 ", card=" + card +
-                ", mobilephone='" + mobilephone + '\'' +
-                ", homephone='" + homephone + '\'' +
+                ", mobilephone='" + mobilePhone + '\'' +
+                ", homephone='" + homePhone + '\'' +
                 ", credit=" + credit +
                 ", vip=" + vip +
                 '}';
