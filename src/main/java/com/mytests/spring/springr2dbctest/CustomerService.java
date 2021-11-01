@@ -1,5 +1,6 @@
 package com.mytests.spring.springr2dbctest;
 
+import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -23,8 +24,32 @@ public class CustomerService {
         }
     }
     public void findByCity(){
-        for (Customer customer : customerRepo.findByCity("spb").toIterable()) {
+        for (Customer customer : Flux.from(customerRepo.findByCity("spb")).toIterable()) {
             System.out.println(customer.toString());
         }
     }
-}
+    public void findLastNamesByCity(){
+        for (String name : customerRepo.findLastNameByCity("spb").toIterable()) {
+            System.out.println(name);
+        }
+        }
+    public void checkStreetExisting(){
+
+        Mono<Boolean> rez = customerRepo.existsByStreetContains("gavrskaya");
+        System.out.println(rez.block());
+    }
+    public void findByStreet(){
+        Publisher<String> pattern = customerRepo.findStreetByName("irina");
+        System.out.println(Mono.from(pattern).block());
+        for (Customer customer : customerRepo.findByStreet(Mono.from(pattern)).toIterable()) {
+            System.out.println(customer.toString());
+        }
+    }
+
+    public void findBySpel(){
+        for (Customer customer : customerRepo.findByQueryWithSpELExpression("pogorelova").toIterable()) {
+            System.out.println(customer.toString());
+        }
+    }
+    }
+

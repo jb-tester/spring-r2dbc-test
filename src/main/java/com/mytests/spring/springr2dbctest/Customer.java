@@ -2,6 +2,7 @@ package com.mytests.spring.springr2dbctest;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 /**
  * *
@@ -9,7 +10,7 @@ import org.springframework.data.relational.core.mapping.Column;
  * <p>Project: spring-r2dbc-test</p>
  * *
  */
-//@Table("customer")
+@Table("customer")
 public class Customer {
 
     @Id

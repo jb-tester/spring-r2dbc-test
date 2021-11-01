@@ -22,5 +22,13 @@ public class SpringR2dbcTestApplication implements CommandLineRunner {
         System.out.println("--------");
         customerService.findByCity();
         System.out.println("--------");
+        customerService.findLastNamesByCity();
+        System.out.println("--------");
+        customerService.checkStreetExisting();
+        System.out.println("--------");
+        customerService.findByStreet();
+        System.out.println("--------");
+        customerService.findBySpel();
+        System.out.println("--------");
     }
 }
