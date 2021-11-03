@@ -14,7 +14,7 @@
     <name>spring-r2dbc-test</name>
     <description>spring-r2dbc-test</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>16</java.version>
     </properties>
     <dependencies>
         <dependency>

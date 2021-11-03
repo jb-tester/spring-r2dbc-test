@@ -23,9 +23,20 @@ public interface CustomerRepo extends R2dbcRepository<Customer,Integer> {
     @Query("select customer.lastName from Customer customer where customer.city = :city")
     Flux<String> findLastNameByCity(@Param("city") String city);
 
-    @Query("select c.street from Customer c where c.firstName= :name")
+    @Query("""
+           select c.street from Customer c
+           where c.firstName= :name
+           """)
     Publisher<String> findStreetByName(@Param("name") String name);
 
     @Query("SELECT * FROM customer WHERE lastname = :#{[0]}")
     Flux<Customer> findByQueryWithSpELExpression(String lastname);
+
+    @Query("""
+           select c.id from Customer c
+           where c.firstName = :name
+           and c.lastName = :surname
+           and c.birthday = :date
+           """)
+    Flux<Customer> byMultipleParameters();
 }
