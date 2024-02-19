@@ -53,6 +53,7 @@ public class CustomerService {
             System.out.println(customer.toString());
         }
     }
+    // https://youtrack.jetbrains.com/issue/IDEA-346385
     @Transactional(transactionManager = "r2dbcTransactionManager")
     public Mono<Customer> addNew(){
         int id = customerRepo.findAll().last().block().getId();
