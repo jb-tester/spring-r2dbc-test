@@ -17,6 +17,7 @@ public class SpringR2dbcTestApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        customerService.addNew();
         System.out.println("--------");
         customerService.findAll();
         System.out.println("--------");

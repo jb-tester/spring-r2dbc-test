@@ -3,6 +3,7 @@ package com.mytests.spring.springr2dbctest;
 import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -13,6 +14,7 @@ import reactor.core.publisher.Mono;
  * *
  */
 @Service
+
 public class CustomerService {
 
     @Autowired
@@ -50,6 +52,13 @@ public class CustomerService {
         for (Customer customer : customerRepo.findByQueryWithSpELExpression("pogorelova").toIterable()) {
             System.out.println(customer.toString());
         }
+    }
+    @Transactional(transactionManager = "r2dbcTransactionManager")
+    public Mono<Customer> addNew(){
+        int id = customerRepo.findAll().last().block().getId();
+        Customer customer = new Customer(id + 1, "Vasya", "Pupkin");
+        customerRepo.save(customer);
+        return Mono.just(customer);
     }
     }
 
